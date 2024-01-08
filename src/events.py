@@ -1,11 +1,8 @@
 from time import time
 
-from flask import request
 from flask_socketio import emit
 
 from .extensions import socketio
-
-users = {}
 
 @socketio.on("connect")
 def handle_connect():
