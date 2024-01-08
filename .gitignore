@@ -3,5 +3,9 @@ __pycache__
 pyvenv.cfg
 
 Lib
+lib
+lib64
 Scripts
 venv
+bin
+include
