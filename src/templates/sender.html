@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sender view</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div style="margin-top: 10em; margin-left: 8em; margin-right: 8em;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="button" id="yes-btn" class="btn btn-success btn-block">Kyllä</button>
+                </div>
+                <div class="col-lg-6">
+                    <button type="button" id="no-btn" class="btn btn-danger btn-block">Ei</button>
+                </div>
+            </div>
+        </div>
+        <audio id="audio">
+            <source src="/static/button.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const socket = io({autoConnect: true});
+
+        var audio = new Audio('/static/button.mp3');
+
+        document.getElementById("yes-btn").addEventListener("click", function() {
+            socket.emit("new_status", "yes");
+            console.log("yes")
+            document.getElementById("audio").play();
+        })
+
+        document.getElementById("no-btn").addEventListener("click", function() {
+            socket.emit("new_status", "no");
+            console.log("no")
+            document.getElementById("audio").play();
+        })
+    </script>
+</body>
+</html>
